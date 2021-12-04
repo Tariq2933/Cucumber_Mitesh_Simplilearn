@@ -3,6 +3,8 @@ package com.tests;
 import com.tests.reports.ExtentTestManager;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 
@@ -21,7 +23,12 @@ public class TestRunner extends AbstractTestNGCucumberTests {
     public void beforesuite(){
         System.out.println(" beofre suite...");
         String pathOfProject = System.getProperty("user.dir");
-        ExtentTestManager.setExtentReportObj(pathOfProject+"/extentReport.html");
+        ExtentTestManager.setExtentReportObj(pathOfProject+"/target/extentReport.html");
+    }
+    @AfterSuite
+    public void as() {
+    	
+    	ExtentTestManager.flushReport();
     }
 
     @DataProvider
